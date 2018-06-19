@@ -7,7 +7,7 @@
 <h1>Welcome to Spring Boot</h1>
 
 <a href="viewprogram">Ссылка</a>
-<a href="test">Тест</a>
+<a href="testsave">SaveProgram</a>
 </body>
 </html>
 

@@ -4,7 +4,9 @@ import com.Dismas.GovnoSoft.Bean.Program;
 import com.Dismas.GovnoSoft.Dao.ProgramDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,6 +30,17 @@ public class GovnoSoftController {
         return new ModelAndView("viewprogram","list" ,list);
     }
 
-    @RequestMapping("/test")
-    public ModelAndView testPage(){return new ModelAndView("test");}
+    @RequestMapping("testsave")
+    public ModelAndView showform(){return new ModelAndView("testsave","command",new Program());}
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute("program") Program p) {
+        dao.save(p);
+
+        //UUIDGen hg = new UUIDGen ();
+
+        return new ModelAndView("redirect:/viewprogram");
+
+    }
 }

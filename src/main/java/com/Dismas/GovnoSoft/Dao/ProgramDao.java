@@ -1,6 +1,7 @@
 package com.Dismas.GovnoSoft.Dao;
 
 import com.Dismas.GovnoSoft.Bean.Program;
+import com.Dismas.GovnoSoft.HashGen.UUIDGen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,9 +17,15 @@ public class ProgramDao {
     @Autowired
     JdbcTemplate template;
 
+   UUIDGen ug = new UUIDGen();
     /*public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }*/
+
+    public int save(Program p){
+     String sql="insert into program values ('"+p.getId()+"','"+p.getName()+"','"+p.getUrl()+"','"+ug.idOne+"');";
+     return template.update(sql);
+    }
 
     public List<Program> getPrograms(){
         System.out.println("Reading from Programs table");
